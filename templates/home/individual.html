@@ -1,0 +1,83 @@
+{% extends "Kila/layout.html"%}
+{% load static%}
+{% block head%}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  function get_report_url(){
+    return "{% url 'home:week_report' obra.id%}"
+  }
+  function get_obra_documentos_url(){
+    return "{% url 'home:obra_documents' obra.id%}"
+  }
+</script>
+<script>
+  function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+</script>
+{%endblock%}
+{%block body%}
+  
+    <main>
+      <h1> <i>{{obra.nombre}}</i> </h1>
+      <hr class="col-3 col-md-2 mb-5">
+      <div style="display: flex; justify-content: center; align-items: center;">
+        
+
+        <div class="col-md-6" style="display:inline-block; width: 45%;">
+        <h2>Datos</h2>
+        <ul class=" ">
+          <li class=""><strong>Supervisor:</strong>  {{obra.supervisor}}</li>
+          <li class=""><strong>Contratista Fiscal:</strong> {{obra.contratista_fiscal}}</li>
+          <li class=""><strong>Número de contrato:</strong> {{obra.num_contrato}}</li>
+        </ul>
+      </div>
+      <div style="display: inline-block; float:right; width: 50%; max-height: 400px; overflow: hidden;">
+        {% if obra.imagen %}
+        <img src="{{obra.imagen.url}}" class="img_obra" alt="Imagen obra">
+        {% else %}
+        <img src="{% static 'Kila/kila-logo.png' %}" class="img_obra" alt="Imagen obra">
+        {%endif%}
+        </div>
+      </div>
+  
+      <hr class="col-3 col-md-2 mb-5">
+  <!-- Graphs -->
+  <div>
+    <select id="week-select" onchange="week_chart()">
+        {%for week in obra.semanas.all %}
+        <option value="week-{{week.id}}">Semana {{week.num_semana}} - {{week.año}}</option>
+        {%endfor%}
+    </select>
+    <button style="margin: 4px; border-radius:10px; background-color:transparent; border:1.5px green solid" type="button" onclick="week_chart()" id="week_chart_button">
+      <i class="fa fa-search" style="color:green"></i></button>
+  </div>
+  <div id="chart_div" style="width:400; height:300"></div>
+      <hr class="m-4">
+      <div id="line_monthly" style="width:400; height:300"></div>
+      <hr class="m-4">
+      <h4><i>Documentos</i></h4>
+      <div id="border">
+        <div id="documents">
+        <div>Semana:</div>
+        <div>Acta de Campo</div>
+        <div>Acta de Conformidad</div>
+        <div>Otros</div>
+        </div>
+      </div>
+    </main>
+{%endblock%}

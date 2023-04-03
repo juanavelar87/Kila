@@ -1,0 +1,21 @@
+{% extends "Kila/layout.html"%}
+{% load static%}
+{%block body%}
+<input placeholder="Buscar" type="text" name="search"  class="nosubmit"id="search">
+    <div class="album ">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {%for obra in obras%}
+            <div class="col">
+              <div class="card shadow-sm m-2">
+                <div class="card-body">
+                  <h5><a style="color:green"href="{% url 'home:individual' obra.id %}">{{obra.nombre}}</a></h5>
+                  <p class="card-text">{{obra.num_contrato}}</p>
+                  <p style="font-size: small; "><strong>{{obra.contratista_fiscal}}</strong></p>
+                  <div class="d-flex justify-content-between align-items-center">
+                  </div>
+                </div>
+              </div>
+            </div>
+              {%endfor%}
+            </div></div>
+{% endblock%}

@@ -1,0 +1,43 @@
+{% extends "Kila/layout.html"%}
+{% load static%}
+
+{%block head%} 
+<meta name="google-site-verification" content="oS8oepvqPFOhQPVctJi-_zB5whC8zhO_F_Zrs2pTOGg" />
+{%endblock%} 
+{% block title%}Iniciar Sesión{%endblock%}
+{%block body%}
+<div class="container">
+  <div class="d-flex flex-wrap align-items-center justify-content-center" style="height:max-content">
+          {% if message %}
+          <h3>{{message}}</h3>
+          {%endif%}  
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-6 my-lg-5 py-lg-5">
+              <img src="{% static 'Kila/kila-logo.png' %}" class="img-fluid" alt="Sample image">
+            </div>
+        <form action="{% url 'access:login' %}" method="POST">
+            <div class="my-lg-5 py-lg-5 m-5">
+              {% csrf_token %}
+                <div class="form-outline mb-4">
+                  <label class="form-label" for="form3Example3" style="margin-left: 0px;">Correo</label>
+                  <input type="email" id="form3Example3" class="form-control form-control-lg" name="email" placeholder="Enter a valid email address">
+                <div class="form-notch"><div class="form-notch-leading" ></div><div class="form-notch-middle" style="width: 88.8px;"></div><div class="form-notch-trailing"></div></div></div>
+  
+                <!-- Password input -->
+                <div class="form-outline mb-3">
+                  <label class="form-label" for="form3Example4" style="margin-left: 0px;">Contraseña</label>
+                  <input type="password" id="form3Example4" class="form-control form-control-lg" name="password" placeholder="Enter password">
+                <div class="form-notch"><div class="form-notch-leading"></div><div class="form-notch-middle" style="width: 64px;"></div><div class="form-notch-trailing"></div></div></div>
+  
+                <div class="text-center text-lg-start mt-4 pt-2">
+                  <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Acceder</button>
+                </div>
+  
+            </div>
+          </div>
+        </form>
+    </div>
+
+</div>
+    
+{% endblock%}
