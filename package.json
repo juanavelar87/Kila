@@ -1,0 +1,11 @@
+{
+    "name": "my-vercel-deployment",
+    "version": "0.1.0",
+    "scripts": {
+      "start": "python server.py"
+    },
+    "dependencies": {
+      "django": "^3.2.10",
+      "serverless-wsgi": "^2.0.0"
+    }
+  }
