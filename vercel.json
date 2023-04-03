@@ -1,14 +1,14 @@
 {
-        "builds": [
-          {
-            "src": "Kila/wsgi.py",
-            "use": "@vercel/python"
-          }
-        ],
-        "routes": [
-          {
-            "src": "/(.*)",
-            "dest": "Kila/wsgi.py"
-          }
-        ]
+    "builds": [
+    {
+    "src": "Kila/wsgi.py",
+    "use": "@vercel/python"
+    }
+    ],
+    "routes": [
+    {
+    "src": "/(.*)",
+    "dest": "Kila/wsgi.py"
+    }
+    ]
     }
