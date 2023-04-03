@@ -78,11 +78,16 @@ WSGI_APPLICATION = 'Kila.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
+DATABASES = { 
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    "ENGINE": 'django.db.backends.postgresql',
+    'URL': 'postgresql://postgres:ry9h2ulQKObnvIXYIWln@containers-us-west-47.railway.app:7762/railway',
+    'NAME': 'railway',
+    'USER': 'postgres',
+    'PASSWORD': 'ry9h2ulQKObnvIXYIWln',
+    'HOST': 'containers-us-west-47.railway.app',
+    'PORT': 7762,
+}
 }
 
 
